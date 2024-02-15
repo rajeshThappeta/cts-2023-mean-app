@@ -1,0 +1,25 @@
+<!-- navigation bar -->
+<ul class="nav bg-warning justify-content-end p-3">
+  @if(status===false){
+  <li class="nav-item">
+    <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="register" routerLinkActive="active"
+      >Register</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="tech" routerLinkActive="active"
+      >Technologies</a
+    >
+  </li>
+  } @else{
+  <li class="nav-item">
+    <a class="nav-link" routerLink="login" routerLinkActive="active" (click)="userService.userLogout()">Logout</a>
+  </li>
+  }
+</ul>

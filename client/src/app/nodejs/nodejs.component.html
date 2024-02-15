@@ -1,0 +1,30 @@
+
+<h1>{{dataService.x()}}</h1>
+<p class="display-3 text-center text-primary">Users</p>
+
+<input type="text" class="form-control w-50 mx-auto" placeholder="Search by Name" [(ngModel)]="searchByName">
+<div class="container mt-5">
+  
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="lead text-center" *ngFor="let user of users$ | async | search: searchByName  " >
+        <td>  {{ user.id }}</td>
+        <td>  {{ user.name  }}</td>
+        <td>  {{ user.username | uppercase  }}</td>
+        <td>  {{ user.email }}</td>
+      
+      </tr>
+    </tbody>
+  </table>
+ 
+</div>
+
+

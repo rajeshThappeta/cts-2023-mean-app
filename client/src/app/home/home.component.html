@@ -1,0 +1,39 @@
+
+<h1>{{y}}</h1>
+<button (click)="changeSignal()">change signal</button>
+
+<div class="text-center">
+  <div class="dropdown">
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Select User ID
+    </button>
+    <ul class="dropdown-menu">
+      @for(userObj of users;track userObj.id){
+      <li>
+        <a class="dropdown-item" (click)="printUserById(userObj.id)">{{
+          userObj.id
+        }}</a>
+      </li>
+      }
+    </ul>
+  </div>
+
+  <!-- single post -->
+  @if(!user?.id){
+    <p class="display-5 mt-5 text-danger">Please select an ID</p>
+  }@else{
+  <div class="card shadow-md w-75 mx-auto mt-5">
+    <div class="card-body">
+        <img [src]="user?.avatar" class="w-25" alt="">
+      <p class="lead fs-3">{{ user?.first_name }} {{ user?.last_name }}</p>
+      <p class="lead p-3">{{ user?.email }}</p>
+     
+    </div>
+  </div>
+}
+</div>
