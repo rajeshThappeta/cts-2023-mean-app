@@ -13,11 +13,12 @@ import { JavaComponent } from './java/java.component';
 import { PythonComponent } from './python/python.component';
 import { NodejsComponent } from './nodejs/nodejs.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SimplePipe } from './simple.pipe';
 import { SearchPipe } from './search.pipe';
+import { authInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { SearchPipe } from './search.pipe';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [provideHttpClient(withFetch())],
+  providers: [provideHttpClient(withFetch()),provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

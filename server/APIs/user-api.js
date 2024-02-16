@@ -4,6 +4,7 @@ const userApp = exp.Router();
 
 //get express-async-handler to handle async errors
 const expressAsyncHandler = require("express-async-handler");
+const verifyToken=require('../Middlewares/verifyToken')
 
 //import req handlers from Controller
 const {
@@ -12,7 +13,8 @@ const {
   createUser,
   updateUser,
   removeUser,
-  loginUser
+  loginUser,
+  getSensitiveData
 } = require("../Controllers/user-controller");
 
 //user CRUD
@@ -29,6 +31,9 @@ userApp.post("/login", expressAsyncHandler(loginUser));
 userApp.put("/user", expressAsyncHandler(updateUser));
 //delete user by username
 userApp.delete("/user/:username", expressAsyncHandler(removeUser));
+
+//protectred route
+userApp.get('/user-sensitive-data',verifyToken,expressAsyncHandler(getSensitiveData))
 
 //export userApp
 module.exports = userApp;

@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
   const signedToken = jwt.sign(
     { username: user.username },
     process.env.SECRET_KEY,
-    { expiresIn: "1d" }
+    { expiresIn: '1d' }
   );
   res
     .status(200)
@@ -72,6 +72,11 @@ const removeUser = (req, res) => {
   res.send({ message: "user removed" });
 };
 
+
+
+const getSensitiveData=(req,res)=>{
+  res.send({message:"User's sensitve data is here"})
+}
 //export
 module.exports = {
   getUsers,
@@ -79,5 +84,6 @@ module.exports = {
   createUser,
   updateUser,
   removeUser,
-  loginUser
+  loginUser,
+  getSensitiveData
 };

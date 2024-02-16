@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getCurrentUser(){
-    return this.currentUser.asObservable;
+    return this.currentUser.asObservable();
   }
 
 
@@ -55,9 +55,25 @@ export class UserService {
     );
   }
 
+  //get users sensitve data
+  getProtectedData(){
+   return this.httpClient.get('http://localhost:4000/user-api/user-sensitive-data')
+  }
+
+
   //user logout
   userLogout(){
+    //reset current user
     this.setUserLoginStatus(false)
+    //reset login status
+    this.setCurrentUser({
+      username:'',
+      password:'',
+      email:'',
+      dob:''
+    })
+    //remove token from localstorage
+    localStorage.removeItem('token')
   }
 }
 

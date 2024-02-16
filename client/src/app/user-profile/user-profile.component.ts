@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
+import { User } from '../models/User';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,14 +12,32 @@ export class UserProfileComponent implements OnInit {
   activatedRoute=inject(ActivatedRoute)
   userService=inject(UserService)
   currentUser:any;
+  loggedinUser:User;
+  resOfProtectedRoute:string=''
 
   ngOnInit(): void {
-    //get url param
-    let username=this.activatedRoute.snapshot.paramMap.get('username')
-    //get user details based on username
-    this.userService.getUserByUsername(username).subscribe({
-      next:(usersList)=>{this.currentUser=usersList[0]},
-      error:(err)=>{console.log(err)}
+    
+    this.userService.getCurrentUser().subscribe({
+      next:(user:User)=>{
+        this.loggedinUser=user;
+      },
+      error:(err)=>{
+        console.log("err in user profile",err)
+      }
+    })
+   
+  }
+
+
+  getSensiveData(){
+    this.userService.getProtectedData().subscribe({
+      next:(res)=>{
+          this.resOfProtectedRoute=res['message'];
+
+      },
+      error:err=>{
+        console.log("err in fetched protected data",err)
+      }
     })
   }
 

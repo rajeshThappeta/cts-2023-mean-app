@@ -29,6 +29,9 @@ export class LoginComponent {
         if (res.message === "login success") {
           //store token in local/session storage
           localStorage.setItem("token", res.token);
+          //set user status & current user to service
+          this.userService.setUserLoginStatus(true)
+          this.userService.setCurrentUser(res.user)
           //sessionStorage.setItem('token',res.token)
           //navigate to user profile
           this.router.navigate([`/user-profile/${res.user.username}`]);

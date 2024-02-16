@@ -1,4 +1,9 @@
 <dir class="text-end p-4">
-    <p class="lead fs-2 text-primary">Welcome ,{{currentUser?.username}}</p>
-    <p class="lead fs-4 text-secondary">{{currentUser?.email}}</p>
+    <p class="lead fs-2 text-primary">Welcome ,{{loggedinUser.username}}</p>
+    <p class="lead fs-4 text-secondary">{{loggedinUser.email}}</p>
+    <p class="lead fs-4 text-secondary">{{loggedinUser.dob}}</p>
 </dir>
+
+<button class="btn btn-primary" (click)="getSensiveData()">Get User Sensitive Data</button>
+
+<h1>{{resOfProtectedRoute}}</h1>
